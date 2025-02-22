@@ -9,7 +9,7 @@ SCOPES = ["https://www.googleapis.com/auth/youtube.force-ssl"]
 API_SERVICE_NAME = "youtube"
 API_VERSION = "v3"
 
-# This must match your Google Cloud Console OAuth client "Authorized redirect URIs"
+# Must match exactly what you set in the Google Cloud Console → Authorized redirect URIs
 REDIRECT_URI = "https://ytappapi.streamlit.app"
 
 
@@ -27,7 +27,7 @@ def get_flow():
 
 def build_youtube_client(credentials):
     """
-    Build the YouTube API client from given credentials.
+    Build the YouTube API client from the given credentials.
     """
     return googleapiclient.discovery.build(
         API_SERVICE_NAME, API_VERSION, credentials=credentials
@@ -36,7 +36,7 @@ def build_youtube_client(credentials):
 
 def fetch_liked_videos(youtube):
     """
-    Fetch the user's liked videos (if they're public).
+    Fetch the user's liked videos (if likes are public).
     """
     request = youtube.videos().list(
         part="snippet,contentDetails",
@@ -48,7 +48,7 @@ def fetch_liked_videos(youtube):
 
 def fetch_subscriptions(youtube):
     """
-    Fetch the user's subscriptions (if they're public).
+    Fetch the user's subscriptions (if subscriptions are public).
     """
     request = youtube.subscriptions().list(
         part="snippet,contentDetails",
@@ -75,7 +75,7 @@ def fetch_channel_comments(youtube):
     Fetch comment threads on the user's channel.
     Requires 'youtube.force-ssl' scope and the user must have a channel.
     """
-    # First, get the user's channel ID
+    # Get the user's channel ID
     channels_response = youtube.channels().list(
         part="id",
         mine=True
