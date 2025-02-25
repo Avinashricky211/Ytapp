@@ -146,7 +146,7 @@ def main():
         return
 
     # Check for OAuth code in the URL query parameters
-    query_params = st.query_params
+    query_params = st.experimental_get_query_params()
     if "code" not in query_params:
         # No code: prompt user to authenticate
         flow = get_flow()
