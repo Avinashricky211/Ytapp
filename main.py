@@ -146,7 +146,7 @@ def main():
         return
 
     # Check for OAuth code in the URL query parameters
-    query_params = st.get_query_params()
+    query_params = st.experimental_get_query_params()
     if "code" not in query_params:
         # No code: prompt user to authenticate
         flow = get_flow()
@@ -162,7 +162,7 @@ def main():
             st.session_state["credentials"] = flow.credentials  # Save tokens for later use
 
             # Clear the code from the URL to prevent reuse on reruns
-            st.set_query_params()
+            st.experimental_set_query_params()
 
             st.success("Successfully authenticated!")
             youtube = build_youtube_client(st.session_state["credentials"])

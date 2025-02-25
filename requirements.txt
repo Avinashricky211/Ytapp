@@ -1,6 +1,6 @@
-pip==25.0.1
-streamlit==1.24.0
+pillow
+streamlit
 google-auth
-google-auth-oauthlib==1.2.1
+google-auth-oauthlib
 google-auth-httplib2
-google-api-python-client==2.161.0
+google-api-python-client
